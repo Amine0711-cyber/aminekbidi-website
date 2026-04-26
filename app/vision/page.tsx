@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Vision",
+  title: "Vision — Amine Kbidi | Construire une holding au Maroc",
   description:
-    "La thèse de l'opérateur — pourquoi construire une holding au Maroc en 2026, depuis Meknès.",
+    "La thèse d'Amine Kbidi sur la construction d'entreprise au Maroc : pourquoi une holding, pourquoi Meknès, pourquoi maintenant. Trois convictions qui structurent chaque décision.",
+  alternates: { canonical: "https://aminekbidi.com/vision" },
+  openGraph: {
+    title: "Vision — Amine Kbidi | Construire une holding au Maroc",
+    description:
+      "La thèse d'Amine Kbidi sur la construction d'entreprise au Maroc.",
+    url: "https://aminekbidi.com/vision",
+    type: "article",
+  },
 };
 
 const convictions = [
@@ -24,11 +33,34 @@ const convictions = [
   },
 ];
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "La thèse de l'opérateur — construire une holding au Maroc",
+  author: {
+    "@type": "Person",
+    name: "Mohamed Amine El Kbidi",
+    url: "https://aminekbidi.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Axis Holding",
+    url: "https://aminekbidi.com",
+  },
+  url: "https://aminekbidi.com/vision",
+  about: "Entrepreneuriat, holding, Maroc, Meknès",
+};
+
 export default function VisionPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+
       {/* Hero */}
-      <section className="pt-36 pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
+      <section className="pt-20 md:pt-36 pb-8 md:pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-playfair text-[40px] md:text-[60px] font-medium leading-[1.1] tracking-tight text-foreground">
             La thèse de l&apos;opérateur
@@ -41,7 +73,7 @@ export default function VisionPage() {
       </section>
 
       {/* Corps éditorial */}
-      <section className="py-20 px-6 md:px-12">
+      <section className="py-10 md:py-20 px-6 md:px-12">
         <div className="max-w-3xl mx-auto flex flex-col gap-20">
 
           {/* Bloc 1 — Pourquoi une holding */}
@@ -159,6 +191,24 @@ export default function VisionPage() {
               </em>
               , prévient-il.
             </p>
+          </div>
+
+          {/* Liens internes */}
+          <div className="flex flex-col sm:flex-row gap-4 pb-8">
+            <Link
+              href="/ecosysteme"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Découvrir l'architecture d'Axis Holding et ses entités"
+            >
+              Voir l&apos;architecture de l&apos;écosystème →
+            </Link>
+            <Link
+              href="/parcours"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Lire le parcours entrepreneurial d'Amine Kbidi"
+            >
+              Lire le parcours d&apos;Amine Kbidi →
+            </Link>
           </div>
 
         </div>

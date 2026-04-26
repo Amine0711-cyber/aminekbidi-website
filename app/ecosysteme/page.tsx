@@ -1,19 +1,67 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Écosystème",
+  title: "Écosystème — Axis Holding, OctoPub, Black Version Parfums",
   description:
-    "L'architecture d'Axis Holding. Trois entités actives : OctoPub, Black Version Parfums, et une logique de gouvernance commune.",
+    "L'architecture du portefeuille d'Amine Kbidi : Axis Holding comme structure de gouvernance, OctoPub pour le B2B industriel, Black Version Parfums pour le retail. Trois entités, une logique commune.",
+  alternates: { canonical: "https://aminekbidi.com/ecosysteme" },
+  openGraph: {
+    title: "Écosystème — Axis, OctoPub, Black Version Parfums",
+    description: "Trois entités sous une seule structure de gouvernance.",
+    url: "https://aminekbidi.com/ecosysteme",
+    type: "article",
+  },
 };
+
+const orgsSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Axis Holding",
+    alternateName: ["Axis", "Axis Maroc", "Axis Meknès"],
+    url: "https://aminekbidi.com",
+    founder: { "@type": "Person", name: "Mohamed Amine El Kbidi" },
+    foundingDate: "2025",
+    description: "Holding de gouvernance et de management des entités opérationnelles au Maroc",
+    address: { "@type": "PostalAddress", addressLocality: "Meknès", addressCountry: "MA" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "OctoPub",
+    alternateName: ["OctoPub Meknès", "OctoPub impression", "OctoPub Maroc"],
+    description: "Impression numérique grand format, vinyles et signalétique B2B — Meknès, Maroc",
+    address: { "@type": "PostalAddress", addressLocality: "Meknès", addressCountry: "MA" },
+    parentOrganization: { "@type": "Organization", name: "Axis Holding" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Black Version Parfums",
+    alternateName: ["Black Version", "Black Version Maroc", "Black Version Meknès"],
+    description: "Marque de parfums — boutique à Meknès et vente COD nationale, Maroc",
+    address: { "@type": "PostalAddress", addressLocality: "Meknès", addressCountry: "MA" },
+    parentOrganization: { "@type": "Organization", name: "Axis Holding" },
+  },
+];
 
 export default function EcosystemePage() {
   return (
     <>
+      {orgsSchema.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       {/* Hero */}
-      <section className="pt-36 pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
+      <section className="pt-20 md:pt-36 pb-8 md:pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-playfair text-[40px] md:text-[60px] font-medium leading-[1.1] tracking-tight text-foreground">
-            L&apos;architecture d&apos;Axis
+            L&apos;architecture d&apos;Axis Holding
           </h1>
           <p className="mt-6 font-inter text-lg text-[#6B7280] leading-[1.7]">
             Trois entités actives. Une logique de gouvernance commune. Un système en construction.
@@ -22,7 +70,7 @@ export default function EcosystemePage() {
       </section>
 
       {/* Schéma visuel SVG */}
-      <section className="py-20 px-6 md:px-12 border-b border-[#E5E5E0]">
+      <section className="py-10 md:py-20 px-6 md:px-12 border-b border-[#E5E5E0]">
         <div className="max-w-4xl mx-auto overflow-x-auto">
           <svg
             viewBox="0 0 600 320"
@@ -66,7 +114,7 @@ export default function EcosystemePage() {
       </section>
 
       {/* Blocs entités */}
-      <section className="py-20 px-6 md:px-12">
+      <section className="py-10 md:py-20 px-6 md:px-12">
         <div className="max-w-3xl mx-auto flex flex-col gap-20">
 
           {/* Axis */}
@@ -143,6 +191,24 @@ export default function EcosystemePage() {
             <p className="font-inter text-lg text-[#6B7280] leading-[1.7]">
               L&apos;expansion d&apos;Axis suit une logique simple : chaque nouvelle entité doit pouvoir consommer l&apos;infrastructure existante ou la renforcer. Pas d&apos;entité isolée. Pas de business ajouté par opportunité. Les prochains verticaux sont en phase d&apos;évaluation — annoncés quand ils seront opérationnels, pas avant.
             </p>
+          </div>
+
+          {/* Liens internes */}
+          <div className="flex flex-col sm:flex-row gap-4 pb-8">
+            <Link
+              href="/parcours"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Lire le parcours entrepreneurial d'Amine Kbidi"
+            >
+              Lire le parcours d&apos;Amine Kbidi →
+            </Link>
+            <Link
+              href="/cas"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Consulter les études de cas stratégiques"
+            >
+              Études de cas stratégiques →
+            </Link>
           </div>
 
         </div>

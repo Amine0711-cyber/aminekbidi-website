@@ -1,12 +1,63 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Amine Kbidi — Fondateur, Axis Holding",
+  title: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès, Maroc",
   description:
-    "Amine Kbidi, fondateur d'Axis. Né en 2003 à Meknès. Trois entreprises actives, deux échecs assumés, une thèse claire sur ce que doit être un opérateur de la prochaine génération marocaine.",
+    "Mohamed Amine El Kbidi, fondateur d'Axis Holding à Meknès. Trois entreprises actives : OctoPub, Black Version Parfums et Axis. Parcours, vision et études de cas d'un opérateur marocain de la nouvelle génération.",
+  keywords: [
+    "Amine Kbidi",
+    "Mohamed Amine El Kbidi",
+    "Amine El Kbidi",
+    "Kbidi Amine",
+    "entrepreneur Meknès",
+    "Axis Holding",
+    "OctoPub",
+    "Black Version Parfums",
+    "fondateur Maroc",
+    "holding Maroc",
+  ],
+  authors: [{ name: "Amine Kbidi", url: "https://aminekbidi.com" }],
+  creator: "Amine Kbidi",
+  publisher: "Axis Holding",
+  alternates: { canonical: "https://aminekbidi.com" },
+  openGraph: {
+    title: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès",
+    description:
+      "Mohamed Amine El Kbidi, fondateur d'Axis Holding à Meknès. Trois entreprises actives, une thèse claire sur l'entrepreneuriat marocain.",
+    url: "https://aminekbidi.com",
+    siteName: "Amine Kbidi",
+    images: [
+      {
+        url: "https://aminekbidi.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Amine Kbidi — Fondateur Axis Holding",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amine Kbidi — Fondateur Axis Holding",
+    description: "Mohamed Amine El Kbidi, entrepreneur marocain. Meknès.",
+    images: ["https://aminekbidi.com/og-image.png"],
+    creator: "@aminekbidi",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function Home() {
@@ -204,11 +255,11 @@ export default function Home() {
                   color: "var(--foreground)",
                 }}
               >
-                Amine Kbidi, né en 2003, construit depuis 2021 un portefeuille
-                d&apos;entités opérationnelles au Maroc sous l&apos;architecture Axis
-                Holding. Impression grand format, parfumerie sélective — des
-                secteurs tangibles, mal servis, à fort potentiel de
-                professionnalisation.
+                Mohamed Amine El Kbidi, né en 2003 à Meknès, construit depuis
+                2021 un portefeuille d&apos;entités opérationnelles au Maroc
+                sous l&apos;architecture Axis Holding. Impression grand format,
+                parfumerie sélective — des secteurs tangibles, mal servis, à
+                fort potentiel de professionnalisation.
               </p>
               <p style={{ color: "var(--muted)", marginBottom: 16, fontSize: 18, lineHeight: 1.7 }}>
                 Ce site n&apos;est pas un portfolio. C&apos;est le registre public de ce
@@ -275,12 +326,12 @@ export default function Home() {
         {[
           {
             src: "/uploads/octopub-showroom.jpg",
-            alt: "Showroom OctoPub — Meknès",
+            alt: "Showroom OctoPub à Meknès — impression grand format",
             caption: "OctoPub · Impression grand format, Meknès",
           },
           {
             src: "/uploads/black-version-parfums.jpg",
-            alt: "Boutique Black Version Parfums — Meknès",
+            alt: "Boutique Black Version Parfums à Meknès",
             caption: "Black Version Parfums · Boutique, Meknès",
           },
         ].map(({ src, alt, caption }) => (
@@ -289,17 +340,14 @@ export default function Home() {
             className="photo-block entity-photo"
             style={{ position: "relative", overflow: "hidden" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={src}
               alt={alt}
-              loading="lazy"
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 filter: "grayscale(15%) saturate(0.9)",
-                display: "block",
               }}
             />
             <div

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { X, Menu } from "lucide-react";
 
 const navLinks = [
   { href: "/",           label: "Accueil" },
@@ -29,6 +30,14 @@ export default function Header() {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
 
   return (
     <>
@@ -69,6 +78,8 @@ export default function Header() {
               letterSpacing: "-0.04em",
               color: "var(--foreground)",
               textDecoration: "none",
+              position: "relative",
+              zIndex: 101,
             }}
           >
             AK
@@ -100,11 +111,12 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Mobile hamburger */}
+          {/* Mobile toggle button — hamburger when closed, X when open */}
           <button
             className="md:hidden"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Ouvrir le menu"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
             style={{
               background: "none",
               border: "none",
@@ -113,87 +125,86 @@ export default function Header() {
               minWidth: 44,
               minHeight: 44,
               display: "flex",
-              flexDirection: "column",
-              gap: 5,
               alignItems: "center",
               justifyContent: "center",
+              color: "var(--foreground)",
+              position: "relative",
+              zIndex: 101,
             }}
           >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  display: "block",
-                  width: 24,
-                  height: 1,
-                  background: "var(--foreground)",
-                }}
-              />
-            ))}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
 
-      {/* ── Mobile full-screen menu ── */}
+      {/* ── Overlay — tap outside to close ── */}
       {menuOpen && (
         <div
+          className="md:hidden"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
           style={{
             position: "fixed",
             inset: 0,
-            background: "var(--background)",
-            zIndex: 99,
+            background: "rgba(0,0,0,0.4)",
+            zIndex: 98,
+          }}
+        />
+      )}
+
+      {/* ── Slide drawer — always in DOM for smooth CSS transition ── */}
+      <aside
+        className="md:hidden"
+        aria-hidden={!menuOpen}
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          height: "100%",
+          width: "80%",
+          maxWidth: 360,
+          background: "var(--background)",
+          zIndex: 99,
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 250ms ease-out",
+          boxShadow: menuOpen ? "-8px 0 32px rgba(0,0,0,0.14)" : "none",
+          overflowY: "auto",
+        }}
+      >
+        <nav
+          style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 48,
+            paddingTop: 96,
+            paddingLeft: 32,
+            paddingRight: 32,
           }}
         >
-          <button
-            onClick={() => setMenuOpen(false)}
-            aria-label="Fermer le menu"
-            style={{
-              position: "absolute",
-              top: 16,
-              right: 16,
-              background: "none",
-              border: "none",
-              fontSize: 24,
-              cursor: "pointer",
-              color: "var(--foreground)",
-              lineHeight: 1,
-              width: 44,
-              height: 44,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            ✕
-          </button>
-
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: 32,
-                fontWeight: 500,
-                color: "var(--foreground)",
-                textDecoration: "none",
-                transition: "color 200ms ease",
-                padding: "8px 32px",
-                minHeight: 44,
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-      )}
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontSize: 28,
+                  fontWeight: 500,
+                  color: isActive ? "var(--accent)" : "var(--foreground)",
+                  textDecoration: "none",
+                  transition: "color 200ms ease",
+                  padding: "14px 0",
+                  borderBottom: "1px solid var(--border)",
+                  display: "block",
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+      </aside>
     </>
   );
 }

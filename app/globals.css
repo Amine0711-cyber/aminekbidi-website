@@ -109,5 +109,8 @@ body {
 }
 
 @media (max-width: 767px) {
-  :root { --space-section-y: 80px; }
+  :root {
+    --space-section-y: 56px;
+    --padding-x-md: var(--padding-x);
+  }
 }

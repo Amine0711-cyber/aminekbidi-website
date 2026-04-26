@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import TimelineItem from "@/components/TimelineItem";
 
 export const metadata: Metadata = {
-  title: "Parcours",
+  title: "Parcours — Amine Kbidi | De Cradly à OctoPub",
   description:
-    "Six ans. Six entreprises. Trois échecs. Trois leçons fondatrices. Le parcours d'Amine Kbidi, fondateur d'Axis Holding.",
+    "Le parcours entrepreneurial de Mohamed Amine El Kbidi : Cradly (2021), Babmansour Store (2022-2024), Black Version Parfums (oct. 2024), Manta Express (2025), OctoPub (déc. 2025), Axis Holding. Six entreprises en cinq ans.",
+  alternates: { canonical: "https://aminekbidi.com/parcours" },
+  openGraph: {
+    title: "Parcours — Amine Kbidi | De Cradly à OctoPub",
+    description:
+      "Six entreprises en cinq ans. Trois échecs documentés. Une thèse qui s'affine.",
+    url: "https://aminekbidi.com/parcours",
+    type: "article",
+  },
 };
 
 const timeline = [
@@ -46,11 +55,38 @@ const timeline = [
   },
 ];
 
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: "Parcours — Mohamed Amine El Kbidi",
+  url: "https://aminekbidi.com/parcours",
+  about: {
+    "@type": "Person",
+    name: "Mohamed Amine El Kbidi",
+    alternateName: ["Amine Kbidi", "Amine El Kbidi"],
+    jobTitle: "Fondateur & CEO",
+    worksFor: { "@type": "Organization", name: "Axis Holding" },
+    address: { "@type": "PostalAddress", addressLocality: "Meknès", addressCountry: "MA" },
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", name: "Cradly (2021–2022)" },
+      { "@type": "EducationalOccupationalCredential", name: "Babmansour Store (2022–2024)" },
+      { "@type": "EducationalOccupationalCredential", name: "Black Version Parfums (oct. 2024)" },
+      { "@type": "EducationalOccupationalCredential", name: "OctoPub (déc. 2025)" },
+      { "@type": "EducationalOccupationalCredential", name: "Axis Holding (2025)" },
+    ],
+  },
+};
+
 export default function ParcoursPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
+      />
+
       {/* Hero */}
-      <section className="pt-36 pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
+      <section className="pt-20 md:pt-36 pb-8 md:pb-16 px-6 md:px-12 border-b border-[#E5E5E0]">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-playfair text-[40px] md:text-[60px] font-medium leading-[1.1] tracking-tight text-foreground">
             Parcours
@@ -58,11 +94,14 @@ export default function ParcoursPage() {
           <p className="mt-6 font-inter text-lg text-[#6B7280] leading-[1.7]">
             Six ans. Six entreprises. Trois échecs. Trois leçons fondatrices.
           </p>
+          <p className="mt-2 font-inter text-base text-[#6B7280] leading-[1.7]">
+            Le parcours de Mohamed Amine El Kbidi, entrepreneur marocain basé à Meknès, fondateur d&apos;Axis Holding.
+          </p>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="py-20 px-6 md:px-12">
+      <section className="py-10 md:py-20 px-6 md:px-12">
         <div className="max-w-3xl mx-auto">
           {timeline.map((item, i) => (
             <TimelineItem
@@ -75,14 +114,30 @@ export default function ParcoursPage() {
       </section>
 
       {/* Section Aujourd'hui */}
-      <section className="py-16 px-6 md:px-12 bg-neutral-100">
+      <section className="py-8 md:py-16 px-6 md:px-12 bg-neutral-100">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-playfair text-[28px] md:text-[36px] font-medium text-foreground mb-6">
             Aujourd&apos;hui
           </h2>
-          <p className="font-inter text-lg text-[#0A0A0A] leading-[1.7]">
+          <p className="font-inter text-lg text-[#0A0A0A] leading-[1.7] mb-6">
             Aujourd&apos;hui, je consolide. Le prochain chapitre n&apos;est pas une nouvelle entité — c&apos;est la maturation de celles qui existent et la construction de la couche d&apos;automatisation qui rendra la holding véritablement indépendante de ma présence quotidienne.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/ecosysteme"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Découvrir l'architecture d'Axis Holding, OctoPub et Black Version Parfums"
+            >
+              Découvrir l&apos;architecture d&apos;Axis →
+            </Link>
+            <Link
+              href="/vision"
+              className="font-inter text-sm font-medium text-[#1E3A8A] hover:opacity-70 transition-opacity"
+              aria-label="Lire la thèse et la vision d'Amine Kbidi"
+            >
+              Lire la vision →
+            </Link>
+          </div>
         </div>
       </section>
     </>

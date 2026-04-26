@@ -1,4 +1,10 @@
 import Link from "next/link";
+import {
+  IconLinkedin,
+  IconInstagram,
+  IconYoutube,
+  IconFacebook,
+} from "@/components/SocialIcons";
 
 const navLinks = [
   { href: "/",           label: "Accueil" },
@@ -12,6 +18,29 @@ const entityLinks = [
   { href: "/ecosysteme", label: "Axis Holding" },
   { href: "/ecosysteme", label: "OctoPub" },
   { href: "/ecosysteme", label: "Black Version Parfums" },
+];
+
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://ma.linkedin.com/in/amine-kbidi-484006219",
+    Icon: IconLinkedin,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/amine_kbidi/",
+    Icon: IconInstagram,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@Aminekbidi",
+    Icon: IconYoutube,
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61586359412752",
+    Icon: IconFacebook,
+  },
 ];
 
 export default function Footer() {
@@ -57,12 +86,33 @@ export default function Footer() {
               color: "var(--muted)",
               maxWidth: 280,
               lineHeight: 1.6,
+              marginBottom: 24,
             }}
           >
             Amine Kbidi — Fondateur d&apos;Axis Holding.
             <br />
             Meknès, Maroc.
           </p>
+          <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            {socialLinks.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${name} d'Amine Kbidi`}
+                className="footer-social-icon"
+                style={{
+                  color: "var(--muted)",
+                  display: "flex",
+                  alignItems: "center",
+                  transition: "color 200ms ease",
+                }}
+              >
+                <Icon size={20} />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Navigation */}
@@ -93,18 +143,19 @@ export default function Footer() {
           }}
         />
         <p style={{ fontSize: 12, color: "var(--muted-light)", lineHeight: 1.5 }}>
-          © 2024 Amine Kbidi · Tous droits réservés
+          © 2025 Amine Kbidi · Tous droits réservés
         </p>
       </div>
 
       {/* Responsive overrides */}
       <style>{`
+        .footer-social-icon:hover { color: var(--accent) !important; }
         @media (max-width: 1023px) {
           .footer-inner { grid-template-columns: 1fr 1fr !important; }
           .footer-brand { grid-column: 1 / -1; }
         }
         @media (max-width: 767px) {
-          footer { padding: 64px 0 48px !important; }
+          footer { padding: 48px 0 40px !important; }
           .footer-inner {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
