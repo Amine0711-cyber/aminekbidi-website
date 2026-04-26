@@ -3,6 +3,12 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import {
+  IconLinkedin,
+  IconInstagram,
+  IconYoutube,
+  IconFacebook,
+} from "@/components/SocialIcons";
 
 export const metadata: Metadata = {
   title: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès, Maroc",
@@ -60,10 +66,93 @@ export const metadata: Metadata = {
   },
 };
 
+const pillars = [
+  {
+    num: "I.",
+    name: "Vision long terme",
+    desc: "Construire une holding marocaine bâtie pour durer dix ans avant d'en durer trente. Dominer localement avant de penser au régional.",
+    descShort: "Dominer localement avant d'élargir au régional.",
+    href: "/vision",
+    linkLabel: "Lire la thèse",
+  },
+  {
+    num: "II.",
+    name: "Écosystème opérationnel",
+    desc: "Trois entités actives sous une seule structure de gouvernance. Black Version Parfums, OctoPub, et Axis comme architecture de holding.",
+    descShort: "Trois entités sous une seule structure de gouvernance.",
+    href: "/ecosysteme",
+    linkLabel: "Voir l'architecture",
+  },
+  {
+    num: "III.",
+    name: "Méthode documentée",
+    desc: "Chaque décision stratégique majeure laisse une trace écrite. Les leçons des échecs passés sont publiques. La transparence comme actif de crédibilité.",
+    descShort: "Décisions documentées. Échecs publics. Transparence comme actif.",
+    href: "/cas",
+    linkLabel: "Étudier les cas",
+  },
+];
+
+const todayItems = [
+  {
+    label: "Avril 2026",
+    labelShort: "Avr. 2026",
+    title: "OctoPub — Scaling B2B",
+    text: "OctoPub entre dans sa phase de scaling B2B après son lancement officiel de décembre 2025. L'infrastructure est en place ; la priorité est l'acquisition.",
+    textShort: "OctoPub : phase de scaling B2B.",
+  },
+  {
+    label: "Avril 2026",
+    labelShort: "Avr. 2026",
+    title: "Black Version Parfums",
+    text: "Black Version Parfums prépare l'offensive Plan de Domination Meknès, après une première année qui a porté la valorisation de la marque au-delà du million de dirhams.",
+    textShort: "Black Version : offensive Plan de Domination Meknès.",
+  },
+  {
+    label: "T3 2026",
+    labelShort: "T3 2026",
+    title: "Formalisation d'Axis",
+    text: "Formalisation d'Axis comme structure de gouvernance et de facturation interne entre les entités du portefeuille.",
+    textShort: "Axis : formalisation de la structure de gouvernance.",
+  },
+];
+
+const socialCards = [
+  {
+    name: "LinkedIn",
+    sub: "Analyses pro",
+    href: "https://ma.linkedin.com/in/amine-kbidi-484006219",
+    Icon: IconLinkedin,
+    hoverClass: "social-card-linkedin",
+  },
+  {
+    name: "Instagram",
+    sub: "Quotidien",
+    href: "https://www.instagram.com/amine_kbidi/",
+    Icon: IconInstagram,
+    hoverClass: "social-card-instagram",
+  },
+  {
+    name: "YouTube",
+    sub: "Shorts & vidéos",
+    href: "https://www.youtube.com/@Aminekbidi",
+    Icon: IconYoutube,
+    hoverClass: "social-card-youtube",
+  },
+  {
+    name: "Facebook",
+    sub: "Communauté",
+    href: "https://www.facebook.com/profile.php?id=61586359412752",
+    Icon: IconFacebook,
+    hoverClass: "social-card-facebook",
+  },
+];
+
 export default function Home() {
   return (
     <>
       <style>{`
+        /* ── Layout grids ── */
         .intro-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -97,6 +186,7 @@ export default function Home() {
         }
         .today-item:last-child { border-bottom: 1px solid var(--border); }
 
+        /* ── Tablet ── */
         @media (max-width: 1023px) {
           .intro-grid  { grid-template-columns: 1fr; gap: 64px; }
           .ecosystem-grid { grid-template-columns: 1fr 1fr; }
@@ -104,21 +194,94 @@ export default function Home() {
           .today-label-col { position: static !important; }
           .photo-section { height: 400px; }
         }
+
+        /* ── Mobile ── */
         @media (max-width: 767px) {
           .hero-section  { height: 75vh !important; min-height: 480px !important; }
-          .hero-content  { padding: 0 24px 56px !important; }
-          .hero-title    { font-size: 36px !important; line-height: 1.1 !important; }
-          .hero-subtitle { font-size: 16px !important; }
+          .hero-content  { padding: 0 24px 48px !important; }
+          .hero-title    { font-size: 30px !important; line-height: 1.1 !important; }
           .hero-ctas     { flex-direction: column; align-items: flex-start; }
           .ecosystem-grid { grid-template-columns: 1fr; }
-          .eco-card      { padding: 24px !important; }
-          .today-item    { grid-template-columns: 1fr; gap: 8px; }
+          .eco-card      { padding: 20px !important; }
+          .today-item    { grid-template-columns: 1fr; gap: 6px; padding: 20px 0 !important; }
           .photo-section { grid-template-columns: 1fr; height: auto; }
-          .photo-block   { height: 300px; }
+          .photo-block   { height: 260px; }
           .stat-number   { font-size: 40px !important; }
-          .intro-grid    { gap: 48px; }
-          .today-label-col h2 { font-size: 28px !important; }
-          .section-finale h2  { font-size: 28px !important; }
+          .intro-grid    { gap: 40px; }
+          .today-label-col h2 { font-size: 26px !important; }
+          .section-finale h2  { font-size: 26px !important; }
+
+          /* Mobile text variants */
+          .desktop-only { display: none !important; }
+          .mobile-only  { display: block !important; }
+        }
+        @media (min-width: 768px) {
+          .mobile-only { display: none !important; }
+        }
+
+        /* ── Social cards ── */
+        .social-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 28px 16px;
+          background: var(--background);
+          border: 1px solid var(--border);
+          transition: border-color 300ms ease, box-shadow 300ms ease;
+          text-decoration: none;
+          position: relative;
+          overflow: hidden;
+        }
+        .social-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+        .social-card-icon {
+          color: var(--muted);
+          transition: color 300ms ease;
+          margin-bottom: 10px;
+        }
+        .social-card-name {
+          font-weight: 500;
+          font-size: 15px;
+          color: var(--foreground);
+          margin-bottom: 4px;
+        }
+        .social-card-sub {
+          font-size: 12px;
+          color: var(--muted);
+        }
+
+        /* LinkedIn */
+        .social-card-linkedin:hover { border-color: #0A66C2; }
+        .social-card-linkedin:hover .social-card-icon { color: #0A66C2; }
+
+        /* YouTube */
+        .social-card-youtube:hover { border-color: #FF0000; }
+        .social-card-youtube:hover .social-card-icon { color: #FF0000; }
+
+        /* Facebook */
+        .social-card-facebook:hover { border-color: #1877F2; }
+        .social-card-facebook:hover .social-card-icon { color: #1877F2; }
+
+        /* Instagram — gradient overlay */
+        .social-card-instagram .ig-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+          opacity: 0;
+          transition: opacity 300ms ease;
+        }
+        .social-card-instagram:hover .ig-overlay { opacity: 1; }
+        .social-card-instagram .ig-content {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .social-card-instagram:hover .social-card-icon,
+        .social-card-instagram:hover .social-card-name,
+        .social-card-instagram:hover .social-card-sub {
+          color: #fff !important;
         }
       `}</style>
 
@@ -176,7 +339,7 @@ export default function Home() {
               marginBottom: 24,
             }}
           >
-            Meknès · Maroc · 2024
+            Meknès · Maroc · 2026
           </span>
 
           <h1
@@ -197,8 +360,9 @@ export default function Home() {
             au Maroc, entité par entité.
           </h1>
 
+          {/* Sous-titre desktop */}
           <p
-            className="hero-subtitle"
+            className="desktop-only"
             style={{
               color: "#E5E5E0",
               fontSize: 20,
@@ -211,6 +375,22 @@ export default function Home() {
             Amine Kbidi, fondateur d&apos;Axis. Né en 2003 à Meknès. Trois
             entreprises actives, deux échecs assumés, une thèse claire sur ce
             que doit être un opérateur de la prochaine génération marocaine.
+          </p>
+
+          {/* Sous-titre mobile — version courte */}
+          <p
+            className="mobile-only"
+            style={{
+              color: "#E5E5E0",
+              fontSize: 16,
+              lineHeight: 1.6,
+              maxWidth: 480,
+              opacity: 0.9,
+              marginBottom: 32,
+            }}
+          >
+            Fondateur d&apos;Axis Holding. Trois entreprises actives, deux
+            échecs assumés. Meknès, 2026.
           </p>
 
           <div
@@ -261,12 +441,18 @@ export default function Home() {
                 parfumerie sélective — des secteurs tangibles, mal servis, à
                 fort potentiel de professionnalisation.
               </p>
-              <p style={{ color: "var(--muted)", marginBottom: 16, fontSize: 18, lineHeight: 1.7 }}>
+              <p
+                className="desktop-only"
+                style={{ color: "var(--muted)", marginBottom: 16, fontSize: 18, lineHeight: 1.7 }}
+              >
                 Ce site n&apos;est pas un portfolio. C&apos;est le registre public de ce
                 qu&apos;il construit, pourquoi, et comment. Les décisions sont
                 documentées. Les leçons des échecs aussi.
               </p>
-              <p style={{ color: "var(--muted)", fontSize: 18, lineHeight: 1.7 }}>
+              <p
+                className="desktop-only"
+                style={{ color: "var(--muted)", fontSize: 18, lineHeight: 1.7 }}
+              >
                 Axis Holding est la structure qui fédère ces entités. Chacune
                 opère de manière autonome. Ensemble, elles forment une thèse.
               </p>
@@ -399,39 +585,11 @@ export default function Home() {
 
           <FadeIn delay={150}>
             <div className="ecosystem-grid">
-              {[
-                {
-                  num: "I.",
-                  name: "Vision long terme",
-                  desc: "Construire une holding marocaine bâtie pour durer dix ans avant d'en durer trente. Dominer localement avant de penser au régional.",
-                  href: "/vision",
-                  linkLabel: "Lire la thèse",
-                  faded: false,
-                },
-                {
-                  num: "II.",
-                  name: "Écosystème opérationnel",
-                  desc: "Trois entités actives sous une seule structure de gouvernance. Black Version Parfums, OctoPub, et Axis comme architecture de holding.",
-                  href: "/ecosysteme",
-                  linkLabel: "Voir l'architecture",
-                  faded: false,
-                },
-                {
-                  num: "III.",
-                  name: "Méthode documentée",
-                  desc: "Chaque décision stratégique majeure laisse une trace écrite. Les leçons des échecs passés sont publiques. La transparence comme actif de crédibilité.",
-                  href: "/cas",
-                  linkLabel: "Étudier les cas",
-                  faded: false,
-                },
-              ].map(({ num, name, desc, href, linkLabel, faded }) => (
+              {pillars.map(({ num, name, desc, descShort, href, linkLabel }) => (
                 <div
                   key={name}
                   className="eco-card"
-                  style={{
-                    padding: "40px 32px",
-                    opacity: faded ? 0.5 : 1,
-                  }}
+                  style={{ padding: "40px 32px" }}
                 >
                   <div
                     style={{
@@ -455,8 +613,11 @@ export default function Home() {
                   >
                     {name}
                   </h3>
-                  <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.6 }}>
+                  <p className="desktop-only" style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.6 }}>
                     {desc}
+                  </p>
+                  <p className="mobile-only" style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.6 }}>
+                    {descShort}
                   </p>
                   <Link href={href} className="card-link" style={cardLink}>
                     {linkLabel}
@@ -472,6 +633,104 @@ export default function Home() {
             </Link>
           </FadeIn>
         </div>
+      </section>
+
+      {/* ── SUR LES RÉSEAUX ── */}
+      <section
+        style={{
+          background: "var(--surface)",
+          borderTop: "1px solid var(--border)",
+          borderBottom: "1px solid var(--border)",
+          padding: "var(--space-section-y) 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "var(--max-w-content)",
+            margin: "0 auto",
+            padding: "0 var(--padding-x-md)",
+          }}
+        >
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: 56 }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: 12,
+                  fontWeight: 500,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--muted)",
+                  marginBottom: 12,
+                }}
+              >
+                Suivre le quotidien
+              </p>
+              <h2
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontSize: 40,
+                  fontWeight: 500,
+                  letterSpacing: "-0.025em",
+                  lineHeight: 1.2,
+                  marginBottom: 16,
+                }}
+              >
+                Sur les réseaux
+              </h2>
+              <p
+                style={{
+                  fontSize: 17,
+                  color: "var(--muted)",
+                  maxWidth: 480,
+                  margin: "0 auto",
+                  lineHeight: 1.7,
+                }}
+              >
+                Analyses, coulisses des entités, réflexions opérationnelles.
+                Choisissez votre canal.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={100}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: 16,
+              }}
+              className="social-grid"
+            >
+              {socialCards.map(({ name, sub, href, Icon, hoverClass }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${name} d'Amine Kbidi`}
+                  className={`social-card ${hoverClass}`}
+                >
+                  {hoverClass === "social-card-instagram" && (
+                    <div className="ig-overlay" aria-hidden="true" />
+                  )}
+                  <div className={hoverClass === "social-card-instagram" ? "ig-content" : undefined}>
+                    <Icon size={32} className="social-card-icon" />
+                    <span className="social-card-name">{name}</span>
+                    <span className="social-card-sub">{sub}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+
+        <style>{`
+          @media (max-width: 767px) {
+            .social-grid { grid-template-columns: 1fr 1fr !important; }
+            .social-card { padding: 24px 12px !important; }
+          }
+        `}</style>
       </section>
 
       {/* ── AUJOURD'HUI (surface) ── */}
@@ -506,23 +765,7 @@ export default function Home() {
 
             <FadeIn delay={100}>
               <div>
-                {[
-                  {
-                    label: "Avril 2026",
-                    title: "OctoPub — Scaling B2B",
-                    text: "OctoPub entre dans sa phase de scaling B2B après son lancement officiel de décembre 2025. L'infrastructure est en place ; la priorité est l'acquisition.",
-                  },
-                  {
-                    label: "Avril 2026",
-                    title: "Black Version Parfums",
-                    text: "Black Version Parfums prépare l'offensive Plan de Domination Meknès, après une première année qui a porté la valorisation de la marque au-delà du million de dirhams.",
-                  },
-                  {
-                    label: "T3 2026",
-                    title: "Formalisation d'Axis",
-                    text: "Formalisation d'Axis comme structure de gouvernance et de facturation interne entre les entités du portefeuille.",
-                  },
-                ].map(({ label, title, text }) => (
+                {todayItems.map(({ label, labelShort, title, text, textShort }) => (
                   <div key={title} className="today-item">
                     <div
                       style={{
@@ -534,7 +777,8 @@ export default function Home() {
                         paddingTop: 4,
                       }}
                     >
-                      {label}
+                      <span className="desktop-only">{label}</span>
+                      <span className="mobile-only">{labelShort}</span>
                     </div>
                     <div>
                       <h3
@@ -548,7 +792,12 @@ export default function Home() {
                       >
                         {title}
                       </h3>
-                      <p style={{ fontSize: 16, color: "var(--muted)" }}>{text}</p>
+                      <p className="desktop-only" style={{ fontSize: 16, color: "var(--muted)" }}>
+                        {text}
+                      </p>
+                      <p className="mobile-only" style={{ fontSize: 14, color: "var(--muted)" }}>
+                        {textShort}
+                      </p>
                     </div>
                   </div>
                 ))}

@@ -43,26 +43,34 @@ const contactBlocks = [
   },
 ];
 
-const socialLinks = [
+const socialCards = [
   {
     name: "LinkedIn",
+    sub: "Analyses pro",
     href: "https://ma.linkedin.com/in/amine-kbidi-484006219",
     Icon: IconLinkedin,
+    hoverClass: "contact-social-linkedin",
   },
   {
     name: "Instagram",
+    sub: "Quotidien",
     href: "https://www.instagram.com/amine_kbidi/",
     Icon: IconInstagram,
+    hoverClass: "contact-social-instagram",
   },
   {
     name: "YouTube",
+    sub: "Shorts & vidéos",
     href: "https://www.youtube.com/@Aminekbidi",
     Icon: IconYoutube,
+    hoverClass: "contact-social-youtube",
   },
   {
     name: "Facebook",
+    sub: "Communauté",
     href: "https://www.facebook.com/profile.php?id=61586359412752",
     Icon: IconFacebook,
+    hoverClass: "contact-social-facebook",
   },
 ];
 
@@ -112,32 +120,36 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Réseaux sociaux */}
-      <section className="py-10 md:py-20 px-6 md:px-12 border-t border-[#E5E5E0]">
+      {/* Réseaux sociaux — design coloré */}
+      <section className="py-10 md:py-20 px-6 md:px-12 border-t border-[#E5E5E0]" style={{ background: "var(--surface)" }}>
         <div className="max-w-6xl mx-auto">
+          <p className="font-inter text-xs uppercase tracking-[0.15em] text-[#7A818C] mb-3">
+            Suivre le quotidien
+          </p>
           <h2 className="font-playfair text-[28px] md:text-[36px] font-medium text-foreground mb-4">
             Suivre Amine Kbidi
           </h2>
-          <p className="font-inter text-base text-[#6B7280] leading-[1.7] mb-8 max-w-2xl">
-            Amine Kbidi publie régulièrement sur ses comptes officiels. Pour suivre l&apos;actualité d&apos;Axis et des entités du portefeuille.
+          <p className="font-inter text-base text-[#6B7280] leading-[1.7] mb-8 max-w-xl">
+            Pour suivre l&apos;actualité d&apos;Axis et le quotidien des entités du portefeuille.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {socialLinks.map(({ name, href, Icon }) => (
+            {socialCards.map(({ name, sub, href, Icon, hoverClass }) => (
               <a
                 key={name}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${name} d'Amine Kbidi`}
-                className="contact-social-card flex items-center gap-3 p-4 border border-[#E5E5E0] transition-all duration-200"
+                className={`contact-social-card ${hoverClass} flex flex-col items-center justify-center p-6 border border-[#E5E5E0] transition-all duration-300 relative overflow-hidden`}
               >
-                <Icon
-                  size={20}
-                  className="contact-social-icon text-[#7A818C] transition-colors duration-200"
-                />
-                <span className="font-inter text-sm font-medium text-foreground">
-                  {name}
-                </span>
+                {hoverClass === "contact-social-instagram" && (
+                  <div className="ig-overlay absolute inset-0" aria-hidden="true" />
+                )}
+                <div className={hoverClass === "contact-social-instagram" ? "relative z-10 flex flex-col items-center" : "flex flex-col items-center"}>
+                  <Icon size={28} className="contact-social-icon text-[#7A818C] transition-colors duration-300 mb-3" />
+                  <span className="font-inter font-medium text-sm text-foreground contact-social-name transition-colors">{name}</span>
+                  <span className="font-inter text-xs text-[#7A818C] mt-1 contact-social-sub transition-colors">{sub}</span>
+                </div>
               </a>
             ))}
           </div>
@@ -158,8 +170,27 @@ export default function ContactPage() {
       </section>
 
       <style>{`
-        .contact-social-card:hover { border-color: var(--foreground); }
-        .contact-social-card:hover .contact-social-icon { color: var(--accent); }
+        .contact-social-card { box-shadow: none; }
+        .contact-social-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
+
+        .contact-social-linkedin:hover  { border-color: #0A66C2; }
+        .contact-social-linkedin:hover .contact-social-icon { color: #0A66C2; }
+
+        .contact-social-youtube:hover  { border-color: #FF0000; }
+        .contact-social-youtube:hover .contact-social-icon { color: #FF0000; }
+
+        .contact-social-facebook:hover  { border-color: #1877F2; }
+        .contact-social-facebook:hover .contact-social-icon { color: #1877F2; }
+
+        .contact-social-instagram .ig-overlay {
+          background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+          opacity: 0;
+          transition: opacity 300ms ease;
+        }
+        .contact-social-instagram:hover .ig-overlay { opacity: 1; }
+        .contact-social-instagram:hover .contact-social-icon,
+        .contact-social-instagram:hover .contact-social-name,
+        .contact-social-instagram:hover .contact-social-sub { color: #fff !important; }
       `}</style>
     </>
   );

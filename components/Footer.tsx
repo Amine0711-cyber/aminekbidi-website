@@ -25,21 +25,29 @@ const socialLinks = [
     name: "LinkedIn",
     href: "https://ma.linkedin.com/in/amine-kbidi-484006219",
     Icon: IconLinkedin,
+    hoverColor: "#0A66C2",
+    cssClass: "footer-social-linkedin",
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/amine_kbidi/",
     Icon: IconInstagram,
+    hoverColor: "#DD2A7B",
+    cssClass: "footer-social-instagram",
   },
   {
     name: "YouTube",
     href: "https://www.youtube.com/@Aminekbidi",
     Icon: IconYoutube,
+    hoverColor: "#FF0000",
+    cssClass: "footer-social-youtube",
   },
   {
     name: "Facebook",
     href: "https://www.facebook.com/profile.php?id=61586359412752",
     Icon: IconFacebook,
+    hoverColor: "#1877F2",
+    cssClass: "footer-social-facebook",
   },
 ];
 
@@ -94,14 +102,14 @@ export default function Footer() {
             Meknès, Maroc.
           </p>
           <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-            {socialLinks.map(({ name, href, Icon }) => (
+            {socialLinks.map(({ name, href, Icon, cssClass }) => (
               <a
                 key={name}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${name} d'Amine Kbidi`}
-                className="footer-social-icon"
+                className={`footer-social-icon ${cssClass}`}
                 style={{
                   color: "var(--muted)",
                   display: "flex",
@@ -149,7 +157,11 @@ export default function Footer() {
 
       {/* Responsive overrides */}
       <style>{`
-        .footer-social-icon:hover { color: var(--accent) !important; }
+        .footer-social-linkedin:hover  { color: #0A66C2 !important; }
+        .footer-social-instagram:hover { color: #DD2A7B !important; }
+        .footer-social-youtube:hover   { color: #FF0000 !important; }
+        .footer-social-facebook:hover  { color: #1877F2 !important; }
+
         @media (max-width: 1023px) {
           .footer-inner { grid-template-columns: 1fr 1fr !important; }
           .footer-brand { grid-column: 1 / -1; }

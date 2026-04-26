@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/vision",     label: "Vision" },
   { href: "/ecosysteme", label: "Écosystème" },
   { href: "/parcours",   label: "Parcours" },
+  { href: "/cas",        label: "Études de cas" },
   { href: "/contact",    label: "Contact" },
 ];
 
@@ -161,8 +162,8 @@ export default function Header() {
           top: 0,
           right: 0,
           height: "100%",
-          width: "80%",
-          maxWidth: 360,
+          width: "60%",
+          maxWidth: 280,
           background: "var(--background)",
           zIndex: 99,
           transform: menuOpen ? "translateX(0)" : "translateX(100%)",
@@ -189,12 +190,12 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   fontFamily: "var(--font-playfair), Georgia, serif",
-                  fontSize: 28,
+                  fontSize: 22,
                   fontWeight: 500,
                   color: isActive ? "var(--accent)" : "var(--foreground)",
                   textDecoration: "none",
                   transition: "color 200ms ease",
-                  padding: "14px 0",
+                  padding: "12px 0",
                   borderBottom: "1px solid var(--border)",
                   display: "block",
                 }}
