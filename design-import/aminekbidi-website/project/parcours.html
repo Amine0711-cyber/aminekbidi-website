@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours · Amine Kbidi</title>
+  <meta name="description" content="Le parcours d'Amine Kbidi — de la première entreprise à Axis Holding.">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-hero { padding-top: 180px; padding-bottom: 96px; border-bottom: 1px solid var(--border); }
+
+    .timeline-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      max-width: var(--max-w-content);
+      margin: 0 auto;
+      padding: 0 var(--padding-x-md);
+    }
+    .timeline-nav {
+      padding: var(--space-section-y) 48px var(--space-section-y) 0;
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+    .timeline-nav h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .timeline-nav ul { list-style: none; }
+    .timeline-nav ul li { margin-bottom: 16px; }
+    .timeline-nav ul li a {
+      font-size: 15px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .timeline-nav ul li a::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background 200ms ease;
+    }
+    .timeline-nav ul li a:hover { color: var(--foreground); }
+    .timeline-nav ul li a:hover::before { background: var(--accent); }
+
+    .timeline-content { padding: var(--space-section-y) 0 var(--space-section-y) 64px; }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 80px;
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: -80px;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-entry:last-child::before { display: none; }
+    .timeline-dot {
+      position: absolute;
+      left: -4px;
+      top: 8px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .timeline-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .timeline-entry h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .timeline-entry p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
+    .timeline-lesson {
+      border-left: 2px solid var(--accent);
+      padding: 12px 0 12px 24px;
+      margin-top: 32px;
+      max-width: 560px;
+    }
+    .timeline-lesson p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--foreground);
+      margin: 0;
+    }
+
+    @media (max-width: 1023px) {
+      .timeline-layout { grid-template-columns: 1fr; }
+      .timeline-nav { display: none; }
+      .timeline-content { padding: var(--space-section-y) 0; }
+    }
+    @media (max-width: 767px) {
+      .page-hero { padding-top: 120px; }
+      .timeline-entry h2 { font-size: 24px; }
+      .timeline-layout { padding: 0 var(--padding-x); }
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">AK</a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="vision.html">Vision</a>
+      <a href="ecosysteme.html">Écosystème</a>
+      <a href="parcours.html" class="active">Parcours</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="vision.html">Vision</a>
+  <a href="ecosysteme.html">Écosystème</a>
+  <a href="parcours.html">Parcours</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<section class="page-hero" style="padding-top:180px;padding-bottom:96px;">
+  <div class="container">
+    <span class="tag" style="color:var(--accent);display:block;margin-bottom:24px;">Parcours</span>
+    <h1 class="page fade-in">D'une idée à<br>une structure.</h1>
+    <p class="fade-in" style="font-size:22px;color:var(--muted);max-width:560px;margin-top:24px;line-height:1.6;transition-delay:100ms;">Les étapes clés, les erreurs instructives, et les décisions qui ont façonné Axis Holding.</p>
+  </div>
+</section>
+
+<div class="timeline-layout">
+  <aside class="timeline-nav">
+    <h3>Chronologie</h3>
+    <ul>
+      <li><a href="#2019">2019 — Départ</a></li>
+      <li><a href="#2021">2021 — OctoPub</a></li>
+      <li><a href="#2022">2022 — Consolidation</a></li>
+      <li><a href="#2023">2023 — Black Version</a></li>
+      <li><a href="#2024">2024 — Axis Holding</a></li>
+    </ul>
+  </aside>
+
+  <div class="timeline-content">
+
+    <div class="timeline-entry fade-in" id="2019">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2019</div>
+      <h2>Le déclic</h2>
+      <p>À 17 ans, une observation simple : à Meknès, les entreprises dépensent beaucoup pour l'impression mais sont servies par des prestataires peu professionnalisés. Qualité médiocre, délais non tenus, aucune relation client durable.</p>
+      <p>Pas encore une entreprise — une hypothèse. Deux ans d'observation, de lecture, et de conversations avant de passer à l'action.</p>
+      <div class="timeline-lesson">
+        <p>L'idée ne vaut rien. Ce qui compte, c'est la durée qu'on est prêt à investir avant de lancer.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry fade-in" id="2021" style="transition-delay:50ms;">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2021</div>
+      <h2>OctoPub — le premier pari</h2>
+      <p>Lancement d'OctoPub avec des ressources minimales. Showroom loué, première machine achetée d'occasion, premiers clients acquis par du démarchage direct.</p>
+      <p>Les six premiers mois sont difficiles. Pas de réseau établi, pas de réputation. La croissance vient lentement — et c'est une bonne chose : chaque client conquis enseigne quelque chose.</p>
+      <div class="timeline-lesson">
+        <p>Aucun investissement initial ne vaut ce qu'on apprend en gérant la trésorerie d'une vraie entreprise pour la première fois.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry fade-in" id="2022" style="transition-delay:100ms;">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2022</div>
+      <h2>Consolider avant d'étendre</h2>
+      <p>OctoPub devient rentable. La tentation est d'ouvrir immédiatement une deuxième activité. La décision est inverse : consolider les opérations, formaliser les processus, construire une équipe fiable.</p>
+      <p>Upgrade du matériel. Refonte de l'offre commerciale. Première embauche.</p>
+      <div class="timeline-lesson">
+        <p>La vraie discipline n'est pas de savoir quoi construire — c'est de savoir quand ne pas construire.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry fade-in" id="2023" style="transition-delay:150ms;">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2023</div>
+      <h2>Black Version Parfums</h2>
+      <p>La deuxième entité émerge d'une opportunité de marché observée dans la durée : le segment de la parfumerie sélective à Meknès est sous-développé. La clientèle existe ; l'offre de qualité manque.</p>
+      <p>Ouverture de la boutique Black Version Parfums. Positionnement clair dès le départ : qualité, curation, expérience en boutique. Pas de compromis sur l'environnement physique.</p>
+      <div class="timeline-lesson">
+        <p>La deuxième entreprise est plus facile à lancer — et plus facile à mal lancer. La rigueur opérationnelle ne s'improvise pas deux fois.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry fade-in" id="2024" style="transition-delay:200ms;">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2024 — Aujourd'hui</div>
+      <h2>Axis Holding</h2>
+      <p>La holding est formalisée. Ce n'est pas un changement d'activité — c'est une reconnaissance de ce qui existait déjà : deux entités, une philosophie commune, un opérateur unique.</p>
+      <p>Axis Holding est le cadre qui permettra d'accueillir une troisième entité au moment approprié, de structurer la gouvernance, et de documenter la thèse pour d'éventuels partenaires futurs.</p>
+      <div class="timeline-lesson">
+        <p>Nommer les choses correctement n'est pas de la vanité. C'est de la clarté stratégique.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">AK</a>
+      <p>Amine Kbidi — Fondateur d'Axis Holding.<br>Meknès, Maroc.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="vision.html">Vision</a></li>
+        <li><a href="ecosysteme.html">Écosystème</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Entités</h4>
+      <ul>
+        <li><a href="ecosysteme.html">Axis Holding</a></li>
+        <li><a href="ecosysteme.html">OctoPub</a></li>
+        <li><a href="ecosysteme.html">Black Version Parfums</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-accent-line"></div>
+    <p>© 2024 Amine Kbidi · Tous droits réservés</p>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+  document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
+  document.getElementById('mobile-menu-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+  const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
