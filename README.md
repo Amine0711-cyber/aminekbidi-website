@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aminekbidi.com
 
-## Getting Started
+Site personnel d'Amine Kbidi — personal branding pour Axis Holding, écosystème d'entreprises marocaines.
 
-First, run the development server:
+**Stack :** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Lucide React
+
+---
+
+## Lancer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure des pages
 
-## Learn More
+| Route | Fichier | Contenu |
+|---|---|---|
+| `/` | `app/page.tsx` | Accueil — hero, 3 piliers, updates, CTA |
+| `/vision` | `app/vision/page.tsx` | Thèse, convictions, horizon 2035 |
+| `/ecosysteme` | `app/ecosysteme/page.tsx` | Schéma Axis + fiches entités |
+| `/parcours` | `app/parcours/page.tsx` | Timeline 2021–2025 |
+| `/cas` | `app/cas/page.tsx` | Liste études de cas |
+| `/cas/[slug]` | `app/cas/[slug]/page.tsx` | Étude de cas individuelle |
+| `/contact` | `app/contact/page.tsx` | Blocs contact + newsletter |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Remplacer les images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Toutes les images sont des placeholders `<div>` en attendant les photos réelles.
 
-## Deploy on Vercel
+1. Déposer les fichiers dans `/public/images/`
+2. Consulter `/public/images/README.md` pour la liste complète et les dimensions recommandées
+3. Dans le composant correspondant, remplacer le div placeholder par `<Image>` de `next/image`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Éditer le contenu
+
+Le contenu texte est directement dans les fichiers de pages. Pour une mise à jour rapide :
+
+- **Textes accueil** → `app/page.tsx` (constantes `pillars` et `updates`)
+- **Texte vision** → `app/vision/page.tsx`
+- **Fiches entités** → `app/ecosysteme/page.tsx`
+- **Timeline parcours** → `app/parcours/page.tsx` (constante `timeline`)
+- **Études de cas** → `app/cas/[slug]/page.tsx` (constante `casesData`)
+- **Email / liens** → `components/Footer.tsx` et `app/contact/page.tsx`
+
+---
+
+## Design system
+
+| Variable | Valeur | Usage |
+|---|---|---|
+| `--background` | `#FAFAF7` | Fond global |
+| `--foreground` | `#0A0A0A` | Texte principal |
+| `--accent` | `#1E3A8A` | CTA, liens clés |
+| `--muted` | `#6B7280` | Texte secondaire |
+| `--border` | `#E5E5E0` | Lignes fines |
+
+Fonts : **Playfair Display** (titres) + **Inter** (corps), chargées via `next/font/google`.
+
+---
+
+## Déployer sur Vercel
+
+```bash
+# Option 1 — Interface Vercel
+# Connecter le repo GitHub sur vercel.com, déploiement automatique
+
+# Option 2 — CLI Vercel
+npx vercel
+```
+
+Variables d'environnement : aucune requise pour la v1.
+
+Analytics : Plausible est déjà configuré dans le layout (`data-domain="aminekbidi.com"`). Activer dans le dashboard Plausible après déploiement.
+
+---
+
+## SEO
+
+- `generateMetadata` défini sur chaque page
+- `sitemap.xml` généré automatiquement via `app/sitemap.ts`
+- `robots.txt` généré via `app/robots.ts`
+- Open Graph configuré dans `app/layout.tsx`
