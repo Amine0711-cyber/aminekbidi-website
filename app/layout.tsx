@@ -22,7 +22,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aminekbidi.com"),
+  metadataBase: new URL("https://www.aminekbidi.com"),
   title: {
     default: "Amine Kbidi — Entrepreneur, Fondateur d'Axis Holding",
     template: "%s | Amine Kbidi",
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     title: "Amine Kbidi — Fondateur, Axis Holding",
     description:
       "Entrepreneur marocain, fondateur d'Axis Holding. OctoPub, Black Version Parfums. Meknès, Maroc.",
-    url: "https://aminekbidi.com",
+    url: "https://www.aminekbidi.com",
     siteName: "Amine Kbidi",
     locale: "fr_MA",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Amine Kbidi",
     description: "Fondateur d'Axis Holding. Meknès, Maroc.",
     creator: "@aminekbidi",

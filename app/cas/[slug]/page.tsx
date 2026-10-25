@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 type CaseData = {
@@ -70,11 +71,27 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
+  if (!Object.prototype.hasOwnProperty.call(casesData, params.slug)) notFound();
   const data = casesData[params.slug];
-  if (!data) return { title: "Étude de cas introuvable" };
+  const description = `${data.entity} · ${data.year} — Étude de cas stratégique documentée par Amine Kbidi.`;
   return {
     title: data.title,
-    description: `${data.entity} · ${data.year} — Étude de cas stratégique documentée par Amine Kbidi.`,
+    description,
+    alternates: { canonical: `https://www.aminekbidi.com/cas/${params.slug}` },
+    openGraph: {
+      title: data.title,
+      description,
+      url: `https://www.aminekbidi.com/cas/${params.slug}`,
+      siteName: "Amine Kbidi",
+      locale: "fr_MA",
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: data.title,
+      description,
+      creator: "@aminekbidi",
+    },
   };
 }
 
@@ -87,24 +104,8 @@ export default function CaseStudyPage({
 }: {
   params: { slug: string };
 }) {
+  if (!Object.prototype.hasOwnProperty.call(casesData, params.slug)) notFound();
   const data = casesData[params.slug];
-
-  if (!data) {
-    return (
-      <div className="pt-36 pb-20 px-6 md:px-12 max-w-3xl mx-auto">
-        <Link
-          href="/cas"
-          className="inline-flex items-center gap-2 font-inter text-sm text-[#6B7280] hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft size={14} />
-          Retour aux cas
-        </Link>
-        <h1 className="font-playfair text-4xl font-medium">
-          Étude de cas introuvable.
-        </h1>
-      </div>
-    );
-  }
 
   return (
     <>

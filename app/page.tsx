@@ -11,7 +11,7 @@ import {
 } from "@/components/SocialIcons";
 
 export const metadata: Metadata = {
-  title: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès, Maroc",
+  title: { absolute: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès, Maroc" },
   description:
     "Mohamed Amine El Kbidi, fondateur d'Axis Holding à Meknès. Trois entreprises actives : OctoPub, Black Version Parfums et Axis. Parcours, vision et études de cas d'un opérateur marocain de la nouvelle génération.",
   keywords: [
@@ -26,32 +26,23 @@ export const metadata: Metadata = {
     "fondateur Maroc",
     "holding Maroc",
   ],
-  authors: [{ name: "Amine Kbidi", url: "https://aminekbidi.com" }],
+  authors: [{ name: "Amine Kbidi", url: "https://www.aminekbidi.com" }],
   creator: "Amine Kbidi",
   publisher: "Axis Holding",
-  alternates: { canonical: "https://aminekbidi.com" },
+  alternates: { canonical: "https://www.aminekbidi.com" },
   openGraph: {
     title: "Amine Kbidi — Fondateur d'Axis Holding | Entrepreneur Meknès",
     description:
       "Mohamed Amine El Kbidi, fondateur d'Axis Holding à Meknès. Trois entreprises actives, une thèse claire sur l'entrepreneuriat marocain.",
-    url: "https://aminekbidi.com",
+    url: "https://www.aminekbidi.com",
     siteName: "Amine Kbidi",
-    images: [
-      {
-        url: "https://aminekbidi.com/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Amine Kbidi — Fondateur Axis Holding",
-      },
-    ],
-    locale: "fr_FR",
+    locale: "fr_MA",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Amine Kbidi — Fondateur Axis Holding",
     description: "Mohamed Amine El Kbidi, entrepreneur marocain. Meknès.",
-    images: ["https://aminekbidi.com/og-image.png"],
     creator: "@aminekbidi",
   },
   robots: {

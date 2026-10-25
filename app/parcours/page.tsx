@@ -3,16 +3,24 @@ import Link from "next/link";
 import TimelineItem from "@/components/TimelineItem";
 
 export const metadata: Metadata = {
-  title: "Parcours — Amine Kbidi | De Cradly à OctoPub",
+  title: { absolute: "Parcours — Amine Kbidi | De Cradly à OctoPub" },
   description:
     "Le parcours entrepreneurial de Mohamed Amine El Kbidi : Cradly (2021), Babmansour Store (2022-2024), Black Version Parfums (oct. 2024), Manta Express (2025), OctoPub (déc. 2025), Axis Holding. Six entreprises en cinq ans.",
-  alternates: { canonical: "https://aminekbidi.com/parcours" },
+  alternates: { canonical: "https://www.aminekbidi.com/parcours" },
   openGraph: {
+    siteName: "Amine Kbidi",
+    locale: "fr_MA",
     title: "Parcours — Amine Kbidi | De Cradly à OctoPub",
     description:
       "Six entreprises en cinq ans. Trois échecs documentés. Une thèse qui s'affine.",
-    url: "https://aminekbidi.com/parcours",
+    url: "https://www.aminekbidi.com/parcours",
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Parcours — Amine Kbidi | De Cradly à OctoPub",
+    description: "Six entreprises en cinq ans. Trois échecs documentés. Une thèse qui s'affine.",
+    creator: "@aminekbidi",
   },
 };
 
@@ -59,7 +67,7 @@ const profileSchema = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   name: "Parcours — Mohamed Amine El Kbidi",
-  url: "https://aminekbidi.com/parcours",
+  url: "https://www.aminekbidi.com/parcours",
   about: {
     "@type": "Person",
     name: "Mohamed Amine El Kbidi",

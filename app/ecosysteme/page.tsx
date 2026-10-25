@@ -2,15 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Écosystème — Axis Holding, OctoPub, Black Version Parfums",
+  title: { absolute: "Écosystème — Axis Holding, OctoPub, Black Version Parfums" },
   description:
     "L'architecture du portefeuille d'Amine Kbidi : Axis Holding comme structure de gouvernance, OctoPub pour le B2B industriel, Black Version Parfums pour le retail. Trois entités, une logique commune.",
-  alternates: { canonical: "https://aminekbidi.com/ecosysteme" },
+  alternates: { canonical: "https://www.aminekbidi.com/ecosysteme" },
   openGraph: {
+    siteName: "Amine Kbidi",
+    locale: "fr_MA",
     title: "Écosystème — Axis, OctoPub, Black Version Parfums",
     description: "Trois entités sous une seule structure de gouvernance.",
-    url: "https://aminekbidi.com/ecosysteme",
+    url: "https://www.aminekbidi.com/ecosysteme",
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Écosystème — Axis, OctoPub, Black Version Parfums",
+    description: "Trois entités sous une seule structure de gouvernance.",
+    creator: "@aminekbidi",
   },
 };
 
@@ -20,7 +28,7 @@ const orgsSchema = [
     "@type": "Organization",
     name: "Axis Holding",
     alternateName: ["Axis", "Axis Maroc", "Axis Meknès"],
-    url: "https://aminekbidi.com",
+    url: "https://www.aminekbidi.com",
     founder: { "@type": "Person", name: "Mohamed Amine El Kbidi" },
     foundingDate: "2025",
     description: "Holding de gouvernance et de management des entités opérationnelles au Maroc",

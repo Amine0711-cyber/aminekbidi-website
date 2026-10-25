@@ -6,10 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/admin/"],
+        disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://aminekbidi.com/sitemap.xml",
-    host: "https://aminekbidi.com",
+    sitemap: "https://www.aminekbidi.com/sitemap.xml",
+    host: "https://www.aminekbidi.com",
   };
 }

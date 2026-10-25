@@ -3,15 +3,23 @@ import Link from "next/link";
 import CaseStudyCard from "@/components/CaseStudyCard";
 
 export const metadata: Metadata = {
-  title: "Études de cas — Amine Kbidi | Décisions stratégiques documentées",
+  title: { absolute: "Études de cas — Amine Kbidi | Décisions stratégiques documentées" },
   description:
     "Études de cas opérationnelles : pivot OctoPub vers le modèle Hybride V3, relance de Black Version Parfums, création d'Axis Holding. Méthode, exécution, résultats.",
-  alternates: { canonical: "https://aminekbidi.com/cas" },
+  alternates: { canonical: "https://www.aminekbidi.com/cas" },
   openGraph: {
+    siteName: "Amine Kbidi",
+    locale: "fr_MA",
     title: "Études de cas — Amine Kbidi",
     description: "Décisions stratégiques documentées.",
-    url: "https://aminekbidi.com/cas",
+    url: "https://www.aminekbidi.com/cas",
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Études de cas — Amine Kbidi",
+    description: "Décisions stratégiques documentées.",
+    creator: "@aminekbidi",
   },
 };
 
@@ -46,25 +54,25 @@ const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Études de cas — Amine Kbidi",
-  url: "https://aminekbidi.com/cas",
-  author: { "@type": "Person", name: "Mohamed Amine El Kbidi", url: "https://aminekbidi.com" },
+  url: "https://www.aminekbidi.com/cas",
+  author: { "@type": "Person", name: "Mohamed Amine El Kbidi", url: "https://www.aminekbidi.com" },
   hasPart: [
     {
       "@type": "Article",
       name: "Pivot OctoPub vers le modèle Hybride V3",
-      url: "https://aminekbidi.com/cas/octopub-hybride-v3",
+      url: "https://www.aminekbidi.com/cas/octopub-hybride-v3",
       about: "OctoPub, impression B2B, Meknès, Maroc",
     },
     {
       "@type": "Article",
       name: "Récupération de Black Version Parfums",
-      url: "https://aminekbidi.com/cas/black-version-recuperation",
+      url: "https://www.aminekbidi.com/cas/black-version-recuperation",
       about: "Black Version Parfums, retail, parfums, Meknès",
     },
     {
       "@type": "Article",
       name: "Création d'Axis comme structure de gouvernance",
-      url: "https://aminekbidi.com/cas/axis-gouvernance",
+      url: "https://www.aminekbidi.com/cas/axis-gouvernance",
       about: "Axis Holding, gouvernance, holding, Maroc",
     },
   ],

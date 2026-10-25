@@ -9,15 +9,23 @@ import {
 } from "@/components/SocialIcons";
 
 export const metadata: Metadata = {
-  title: "Contact — Amine Kbidi | Partenariats stratégiques",
+  title: { absolute: "Contact — Amine Kbidi | Partenariats stratégiques" },
   description:
     "Entrer en contact avec Amine Kbidi pour partenariats stratégiques, projets B2B OctoPub, ou collaborations avec Black Version Parfums.",
-  alternates: { canonical: "https://aminekbidi.com/contact" },
+  alternates: { canonical: "https://www.aminekbidi.com/contact" },
   openGraph: {
+    siteName: "Amine Kbidi",
+    locale: "fr_MA",
     title: "Contact — Amine Kbidi",
     description: "Partenariats, projets B2B, collaborations.",
-    url: "https://aminekbidi.com/contact",
+    url: "https://www.aminekbidi.com/contact",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact — Amine Kbidi",
+    description: "Partenariats, projets B2B, collaborations.",
+    creator: "@aminekbidi",
   },
 };
 

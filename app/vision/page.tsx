@@ -2,16 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Vision — Amine Kbidi | Construire une holding au Maroc",
+  title: { absolute: "Vision — Amine Kbidi | Construire une holding au Maroc" },
   description:
     "La thèse d'Amine Kbidi sur la construction d'entreprise au Maroc : pourquoi une holding, pourquoi Meknès, pourquoi maintenant. Trois convictions qui structurent chaque décision.",
-  alternates: { canonical: "https://aminekbidi.com/vision" },
+  alternates: { canonical: "https://www.aminekbidi.com/vision" },
   openGraph: {
+    siteName: "Amine Kbidi",
+    locale: "fr_MA",
     title: "Vision — Amine Kbidi | Construire une holding au Maroc",
     description:
       "La thèse d'Amine Kbidi sur la construction d'entreprise au Maroc.",
-    url: "https://aminekbidi.com/vision",
+    url: "https://www.aminekbidi.com/vision",
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Vision — Amine Kbidi | Construire une holding au Maroc",
+    description: "La thèse d'Amine Kbidi sur la construction d'entreprise au Maroc.",
+    creator: "@aminekbidi",
   },
 };
 
@@ -40,14 +48,14 @@ const articleSchema = {
   author: {
     "@type": "Person",
     name: "Mohamed Amine El Kbidi",
-    url: "https://aminekbidi.com",
+    url: "https://www.aminekbidi.com",
   },
   publisher: {
     "@type": "Organization",
     name: "Axis Holding",
-    url: "https://aminekbidi.com",
+    url: "https://www.aminekbidi.com",
   },
-  url: "https://aminekbidi.com/vision",
+  url: "https://www.aminekbidi.com/vision",
   about: "Entrepreneuriat, holding, Maroc, Meknès",
 };
 
