@@ -69,19 +69,20 @@ const casesData: Record<string, CaseData> = {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  if (!Object.prototype.hasOwnProperty.call(casesData, params.slug)) notFound();
-  const data = casesData[params.slug];
+  const { slug } = await params;
+  if (!Object.prototype.hasOwnProperty.call(casesData, slug)) notFound();
+  const data = casesData[slug];
   const description = `${data.entity} · ${data.year} — Étude de cas stratégique documentée par Amine Kbidi.`;
   return {
     title: data.title,
     description,
-    alternates: { canonical: `https://www.aminekbidi.com/cas/${params.slug}` },
+    alternates: { canonical: `https://www.aminekbidi.com/cas/${slug}` },
     openGraph: {
       title: data.title,
       description,
-      url: `https://www.aminekbidi.com/cas/${params.slug}`,
+      url: `https://www.aminekbidi.com/cas/${slug}`,
       siteName: "Amine Kbidi",
       locale: "fr_MA",
       type: "article",
@@ -99,13 +100,14 @@ export async function generateStaticParams() {
   return Object.keys(casesData).map((slug) => ({ slug }));
 }
 
-export default function CaseStudyPage({
+export default async function CaseStudyPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  if (!Object.prototype.hasOwnProperty.call(casesData, params.slug)) notFound();
-  const data = casesData[params.slug];
+  const { slug } = await params;
+  if (!Object.prototype.hasOwnProperty.call(casesData, slug)) notFound();
+  const data = casesData[slug];
 
   return (
     <>
